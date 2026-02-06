@@ -1,0 +1,49 @@
+using AsuntosPenalesAPI.Model.DTO;
+using AsuntosPenalesAPI.Model.Entities;
+using Sicoj.Utils.Models;
+
+namespace AsuntosPenalesAPI.Model.IDAO.IServiceDAO
+{
+    public interface IAsuntosPenalesAdministradorUAService
+    {
+        Task<AsuntosPenales> GetAsuntoPenalById(int id);
+        Task<ResultOperation> GetHistoricoAsync(int fetch, int page, string? orderByColumn, bool v, string? numeroasuntopenal, DateTime? fecharecepcion_desde, DateTime? fecharecepcion_hasta, DateTime? fechavencimiento_desde, DateTime? fechavencimiento_hasta, string? oficiosolicitud, string? numeroexpedientecadido, int? id_unidadrealizasolicitud, int? admin_control, int? id_subadministracion, string? nombre_abogado, int? id_estadotarea, int? id_estadoprocesal, int? id_administracion_adscrita, bool? tipo_unidad);
+        Task<ResultOperation> GetAdministradorUAsuntoPenalById(int id);
+        Task<List<ResponseReporteGeneral>> ExportarReporteGeneral
+        (
+            string? noAsunto,
+            DateTime? fechaRecepcionDesde,
+            DateTime? fechaRecepcionHasta,
+            DateTime? fechaVencimientoDesde,
+            DateTime? fechaVencimientoHasta,
+            string? oficioSolicitud,
+            string? NoExpedienteCadido,
+            List<int>? UnidadRealizaSolicitud,
+            int? idAdministracion,
+            int? idSubadministracion,
+            string? idAbogadoAsigno,
+            List<int>? EstadoTarea,
+            List<int>? EstadoProcesal,
+            List<int>? TipoConclusion,
+            DateTime? fechaConclusionDesde,
+            DateTime? fechaConclusionHasta,
+            List<int>? DeterminacionAsunto,
+            List<int>? RequisitosProcedibilidad,
+            List<int>? Delito,
+            int? TipoSolucionAlterna,
+            DateTime? FechaPresentacionRequisito,
+            DateTime? FechaDelAutoVinculacion,
+            DateTime? FechaEmisionSentencia
+
+        );
+        
+        Task<ResultOperation> RemitirAsync(
+            AsuntosPenales entity,
+            AsuntosPenalesRemision entityRemision,
+            ArchivosAsuntosPenales entityDocumento,
+            DataFile dataFile
+        );
+
+    }
+
+}
